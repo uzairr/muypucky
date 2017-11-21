@@ -31,6 +31,11 @@ class RestaurantLocationCreateView(CreateView):
 	template_name = 'restaurant/forms.html'
 	success_url = '/restaurants/'
 
+	def form_valid(self, form):
+		instance = form.save(commit=False)
+		instance.owner = self.request.user
+		return super(RestaurantLocationCreateView, self).form_valid(form)
+
 
 def restaurant_create_view(request):
 	form = RestaurantCreateForm(request.POST or None)
