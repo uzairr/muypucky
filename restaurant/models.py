@@ -3,6 +3,7 @@ from django.conf import settings
 from django.db.models.signals import (
 	pre_save, post_save
 	)
+from django.core.urlresolvers import reverse
 from restaurant.utils import unique_slug_generator
 
 User = settings.AUTH_USER_MODEL
@@ -18,6 +19,9 @@ class RestaurantLocation(models.Model):
 
 	def __str__(self):
 		return self.name
+
+	def get_absolute_url(self):
+		return reverse('restaurant:detail', kwargs={'slug':self.slug})
 
 	@property
 	def title(self):
