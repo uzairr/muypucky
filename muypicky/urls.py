@@ -7,6 +7,7 @@ from restaurant.views import (
 	RestaurantDetailView,
 	RestaurantLocationCreateView
 	)
+from profiles.views import ProfileFollowToggle
 
 
 urlpatterns = [
@@ -14,6 +15,8 @@ urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='home.html'), name="home"),
     url(r'^login/$', LoginView.as_view(), name="login"),
     url(r'^restaurants/', include('restaurant.urls', namespace='restaurant'), ),
+    url(r'^profile-follow/$', ProfileFollowToggle.as_view(), name='follow'),
+    url(r'^u/', include('profiles.urls', namespace='profiles'), ),
     url(r'^items/', include('menus.urls', namespace='menus'), ),
     url(r'^about/$', TemplateView.as_view(template_name='about.html'), name="about"),
     url(r'^contact/$', TemplateView.as_view(template_name='contact.html'), name="contact"),

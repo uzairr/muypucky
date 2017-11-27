@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %} Menus | {{block.super}} {%endblock%}
 {% block content %}
-<h1> Menu Items </h1>
+<h1> Menu Items <small><a href='{% url "menus:create" %}'>Add</a></small></h1>
 <ul>
 	{% for obj in object_list %}
 		<li><a href='{{obj.get_absolute_url}}'>{{obj.name}}
@@ -24,7 +24,7 @@
 			{%endfor%}
 		</ul>
 		{%endif%}
-
+	<li> <a href='{% url "menus:create" %}'>Add Menu Item</a> </li>
 	{%endfor%}
 </ul>
 {%endblock%}
